@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Curated Virtual Art Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header h1 {
+            color: #4a5568;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            text-align: center;
+            color: #718096;
+        }
+        .controls {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            margin: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .gallery-section {
+            margin: 2rem;
+        }
+        .section-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .artwork-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .artwork-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .artwork-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .artwork-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 3rem;
+            position: relative;
+        }
+        .artwork-info {
+            padding: 1.5rem;
+        }
+        .artwork-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        .artwork-artist {
+            color: #718096;
+            margin-bottom: 0.5rem;
+        }
+        .artwork-style {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .artwork-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .tag {
+            background: #e2e8f0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            color: #4a5568;
+        }
+        .artwork-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .like-btn {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .like-btn.liked {
+            background: #c53030;
+        }
+        .like-btn:hover {
+            background: #c53030;
+        }
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 2rem;
+        }
+        .score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+        }
+        .close {
+            color: #999;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            .artwork-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 AI-Curated Virtual Art Gallery</h1>
+        <p>Discover personalized art recommendations powered by artificial intelligence</p>
+    </div>
+    <div class="controls">
+        <button class="btn btn-primary" onclick="loadRecommendations()">🤖 Get AI Recommendations</button>
+        <button class="btn btn-secondary" onclick="loadAllArtworks()">🖼️ Browse All Artworks</button>
+        <button class="btn btn-secondary" onclick="showGenerateModal()">✨ Generate AI Art</button>
+        <a href="/admin" class="btn btn-secondary">📊 Gallery Stats</a>
+        <a href="/export-artsteps" class="btn btn-secondary" target="_blank">📤 Export for Artsteps</a>
+    </div>
+    <div class="gallery-section">
+        <h2 class="section-title" id="section-title">Welcome to Your Personalized Gallery</h2>
+        <div class="artwork-grid" id="artwork-grid">
+            <div class="loading">Click "Get AI Recommendations" to see your personalized art collection!</div>
+        </div>
+    </div>
+    <!-- Generate Art Modal -->
+    <div id="generateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideGenerateModal()">&times;</span>
+            <h2>Generate AI Artwork</h2>
+            <div class="form-group">
+                <label for="artTitle">Title (optional):</label>
+                <input type="text" id="artTitle" placeholder="Enter artwork title...">
+            </div>
+            <div class="form-group">
+                <label for="colorScheme">Color Scheme:</label>
+                <select id="colorScheme">
+                    <option value="vibrant">Vibrant</option>
+                    <option value="pastel">Pastel</option>
+                    <option value="monochrome">Monochrome</option>
+                    <option value="earth">Earth Tones</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="generateArt()">Generate Artwork</button>
+        </div>
+    </div>
+    <script>
+        let likedArtworks = new Set();
+        async function loadRecommendations() {
+            document.getElementById('section-title').textContent = 'AI Recommendations For You';
+            document.getElementById('artwork-grid').innerHTML = '<div class="loading">Loading your personalized recommendations...</div>';
+            try {
+                const response = await fetch('/api/recommendations');
+                const data = await response.json();
+                if (data.status === 'success') {
+                    displayArtworks(data.recommendations, true);
+                } else {
+                    document.getElementById('artwork-grid').innerHTML = '<div class="loading">Error loading recommendations</div>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('artwork-grid').innerHTML = '<div class="loading">Error loading recommendations</div>';
+            }
+        }
+        async function loadAllArtworks() {
+            document.getElementById('section-title').textContent = 'All Gallery Artworks';
+            document.getElementById('artwork-grid').innerHTML = '<div class="loading">Loading all artworks...</div>';
+            try {
+                const response = await fetch('/api/artworks');
+                const data = await response.json();
+                if (data.status === 'success') {
+                    displayArtworks(data.artworks, false);
+                } else {
+                    document.getElementById('artwork-grid').innerHTML = '<div class="loading">Error loading artworks</div>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('artwork-grid').innerHTML = '<div class="loading">Error loading artworks</div>';
+            }
+        }
+        function displayArtworks(artworks, showScores = false) {
+            const grid = document.getElementById('artwork-grid');
+            if (artworks.length === 0) {
+                grid.innerHTML = '<div class="loading">No artworks found</div>';
+                return;
+            }
+            grid.innerHTML = '';
+            artworks.forEach(artwork => {
+                const isLiked = likedArtworks.has(artwork.id);
+                const score = artwork.recommendation_score;
+                const artworkCard = document.createElement('div');
+                artworkCard.className = 'artwork-card';
+                artworkCard.innerHTML = `
+                    <div class="artwork-image" style="background-image: url('${artwork.image_data || artwork.image_url || ''}'); background-size: cover; background-position: center;">
+                        ${artwork.image_data || artwork.image_url ? '' : '🎨'}
+                        ${showScores && score ? `<div class="score">Score: ${score.toFixed(2)}</div>` : ''}
+                    </div>
+                    <div class="artwork-info">
+                        <div class="artwork-title">${artwork.title}</div>
+                        <div class="artwork-artist">by ${artwork.artist}</div>
+                        <div class="artwork-style">${artwork.style}</div>
+                        <div class="artwork-tags">
+                            ${artwork.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="artwork-actions">
+                            <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${artwork.id}', this)">
+                                ${isLiked ? '❤️ Liked' : '🤍 Like'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                artworkCard.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'BUTTON') {
+                        viewArtwork(artwork.id);
+                    }
+                });
+                grid.appendChild(artworkCard);
+            });
+        }
+        async function toggleLike(artworkId, button) {
+            event.stopPropagation();
+            const isLiked = likedArtworks.has(artworkId);
+            const action = isLiked ? 'unlike' : 'like';
+            try {
+                const response = await fetch('/api/interact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        artwork_id: artworkId,
+                        type: action
+                    })
+                });
+                if (response.ok) {
+                    if (isLiked) {
+                        likedArtworks.delete(artworkId);
+                        button.innerHTML = '🤍 Like';
+                        button.classList.remove('liked');
+                    } else {
+                        likedArtworks.add(artworkId);
+                        button.innerHTML = '❤️ Liked';
+                        button.classList.add('liked');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        async function viewArtwork(artworkId) {
+            try {
+                await fetch('/api/interact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        artwork_id: artworkId,
+                        type: 'view'
+                    })
+                });
+                console.log('Viewed artwork:', artworkId);
+            } catch (error) {
+                console.error('Error recording view:', error);
+            }
+        }
+        function showGenerateModal() {
+            document.getElementById('generateModal').style.display = 'block';
+        }
+        function hideGenerateModal() {
+            document.getElementById('generateModal').style.display = 'none';
+            document.getElementById('artTitle').value = '';
+            document.getElementById('colorScheme').value = 'vibrant';
+        }
+        async function generateArt() {
+            const title = document.getElementById('artTitle').value;
+            const colorScheme = document.getElementById('colorScheme').value;
+            const generateButton = event.target;
+            generateButton.disabled = true;
+            generateButton.textContent = 'Generating...';
+            try {
+                const response = await fetch('/api/generate-artwork', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: title || null,
+                        style: colorScheme
+                    })
+                });
+                const data = await response.json();
+                if (data.status === 'success') {
+                    alert(`Successfully generated: ${data.artwork.title}`);
+                    hideGenerateModal();
+                    loadAllArtworks();
+                } else {
+                    alert('Error generating artwork: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error generating artwork');
+            } finally {
+                generateButton.disabled = false;
+                generateButton.textContent = 'Generate Artwork';
+            }
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById('generateModal');
+            if (event.target === modal) {
+                hideGenerateModal();
+            }
+        }
+        window.onload = function() {
+            loadRecommendations();
+        }
+    </script>
+</body>
+</html>

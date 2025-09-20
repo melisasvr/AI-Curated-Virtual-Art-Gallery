@@ -1,0 +1,359 @@
+{
+  "artworks": [
+    {
+      "id": "art001",
+      "title": "Digital Sunset",
+      "artist": "AI Artist",
+      "style": "abstract",
+      "color_palette": [
+        "#FF6B6B",
+        "#4ECDC4",
+        "#45B7D1"
+      ],
+      "tags": [
+        "sunset",
+        "digital",
+        "colorful"
+      ],
+      "description": "A vibrant abstract representation of a digital sunset",
+      "image_url": "/gallery/digital_sunset.jpg",
+      "created_date": "2024-01-15",
+      "ai_generated": true
+    },
+    {
+      "id": "art002",
+      "title": "Geometric Dreams",
+      "artist": "Virtual Creator",
+      "style": "minimalist",
+      "color_palette": [
+        "#2C3E50",
+        "#ECF0F1",
+        "#E74C3C"
+      ],
+      "tags": [
+        "geometric",
+        "minimalist",
+        "clean"
+      ],
+      "description": "Clean geometric patterns in a minimalist composition",
+      "image_url": "/gallery/geometric_dreams.jpg",
+      "created_date": "2024-01-20",
+      "ai_generated": true
+    },
+    {
+      "id": "art003",
+      "title": "Ocean Waves",
+      "artist": "Nature AI",
+      "style": "impressionist",
+      "color_palette": [
+        "#3498DB",
+        "#2980B9",
+        "#ECF0F1"
+      ],
+      "tags": [
+        "ocean",
+        "waves",
+        "nature"
+      ],
+      "description": "Impressionistic interpretation of ocean waves",
+      "image_url": "/gallery/ocean_waves.jpg",
+      "created_date": "2024-02-01",
+      "ai_generated": true
+    },
+    {
+      "id": "art004",
+      "title": "Neon Cityscape",
+      "artist": "CyberArt AI",
+      "style": "digital",
+      "color_palette": [
+        "#FF0080",
+        "#00FF80",
+        "#8000FF"
+      ],
+      "tags": [
+        "cyberpunk",
+        "city",
+        "neon",
+        "futuristic"
+      ],
+      "description": "A futuristic cityscape with vibrant neon lighting",
+      "image_url": "/gallery/neon_cityscape.jpg",
+      "created_date": "2024-02-05",
+      "ai_generated": true
+    },
+    {
+      "id": "art005",
+      "title": "Zen Garden",
+      "artist": "Peaceful Mind",
+      "style": "minimalist",
+      "color_palette": [
+        "#F5F5DC",
+        "#8FBC8F",
+        "#696969"
+      ],
+      "tags": [
+        "zen",
+        "peaceful",
+        "nature",
+        "meditation"
+      ],
+      "description": "A serene minimalist interpretation of a zen garden",
+      "image_url": "/gallery/zen_garden.jpg",
+      "created_date": "2024-02-08",
+      "ai_generated": false
+    },
+    {
+      "id": "art006",
+      "title": "Cosmic Dance",
+      "artist": "StarField Studio",
+      "style": "surreal",
+      "color_palette": [
+        "#4B0082",
+        "#FF1493",
+        "#FFD700"
+      ],
+      "tags": [
+        "space",
+        "cosmic",
+        "surreal",
+        "dance"
+      ],
+      "description": "Surreal interpretation of celestial bodies in motion",
+      "image_url": "/gallery/cosmic_dance.jpg",
+      "created_date": "2024-02-10",
+      "ai_generated": true
+    },
+    {
+      "id": "art007",
+      "title": "Urban Pulse",
+      "artist": "Street Vision",
+      "style": "pop_art",
+      "color_palette": [
+        "#FF4500",
+        "#32CD32",
+        "#1E90FF"
+      ],
+      "tags": [
+        "urban",
+        "street",
+        "energy",
+        "modern"
+      ],
+      "description": "Pop art representation of urban energy and movement",
+      "image_url": "/gallery/urban_pulse.jpg",
+      "created_date": "2024-02-12",
+      "ai_generated": false
+    },
+    {
+      "id": "art008",
+      "title": "Forest Whispers",
+      "artist": "Natural Harmony",
+      "style": "impressionist",
+      "color_palette": [
+        "#228B22",
+        "#8FBC8F",
+        "#F5F5DC"
+      ],
+      "tags": [
+        "forest",
+        "nature",
+        "peaceful",
+        "organic"
+      ],
+      "description": "Impressionistic capture of sunlight filtering through forest",
+      "image_url": "/gallery/forest_whispers.jpg",
+      "created_date": "2024-02-14",
+      "ai_generated": false
+    },
+    {
+      "id": "art009",
+      "title": "Quantum Fragments",
+      "artist": "Physics Art Lab",
+      "style": "abstract",
+      "color_palette": [
+        "#00CED1",
+        "#FF69B4",
+        "#ADFF2F"
+      ],
+      "tags": [
+        "quantum",
+        "science",
+        "fragments",
+        "energy"
+      ],
+      "description": "Abstract visualization of quantum particle interactions",
+      "image_url": "/gallery/quantum_fragments.jpg",
+      "created_date": "2024-02-16",
+      "ai_generated": true
+    },
+    {
+      "id": "art010",
+      "title": "Retro Synthwave",
+      "artist": "Retro Future",
+      "style": "digital",
+      "color_palette": [
+        "#FF006E",
+        "#FB5607",
+        "#8338EC"
+      ],
+      "tags": [
+        "retro",
+        "synthwave",
+        "80s",
+        "nostalgic"
+      ],
+      "description": "Nostalgic digital art inspired by 80s synthwave aesthetic",
+      "image_url": "/gallery/retro_synthwave.jpg",
+      "created_date": "2024-02-18",
+      "ai_generated": true
+    },
+    {
+      "id": "art011",
+      "title": "Marble Dreams",
+      "artist": "Classical Moderne",
+      "style": "classical",
+      "color_palette": [
+        "#F8F8FF",
+        "#D2B48C",
+        "#A0522D"
+      ],
+      "tags": [
+        "marble",
+        "classical",
+        "sculpture",
+        "elegant"
+      ],
+      "description": "Digital interpretation of classical marble sculpture",
+      "image_url": "/gallery/marble_dreams.jpg",
+      "created_date": "2024-02-20",
+      "ai_generated": false
+    },
+    {
+      "id": "art012",
+      "title": "Electric Storm",
+      "artist": "Weather Dynamics",
+      "style": "abstract",
+      "color_palette": [
+        "#9400D3",
+        "#FFD700",
+        "#FF4500"
+      ],
+      "tags": [
+        "storm",
+        "electricity",
+        "energy",
+        "dynamic"
+      ],
+      "description": "Abstract representation of electrical storm patterns",
+      "image_url": "/gallery/electric_storm.jpg",
+      "created_date": "2024-02-22",
+      "ai_generated": true
+    },
+    {
+      "id": "art013",
+      "title": "Minimalist Horizon",
+      "artist": "Simple Beauty",
+      "style": "minimalist",
+      "color_palette": [
+        "#E6E6FA",
+        "#FFE4E1",
+        "#F0F8FF"
+      ],
+      "tags": [
+        "horizon",
+        "minimal",
+        "peaceful",
+        "simplicity"
+      ],
+      "description": "Clean, minimal interpretation of a distant horizon",
+      "image_url": "/gallery/minimalist_horizon.jpg",
+      "created_date": "2024-02-24",
+      "ai_generated": false
+    },
+    {
+      "id": "75d926ac",
+      "title": "Colorful Dreams",
+      "artist": "AI Gallery Generator",
+      "style": "abstract",
+      "color_palette": [
+        "#FF6B6B",
+        "#4ECDC4",
+        "#45B7D1"
+      ],
+      "tags": [
+        "ai_generated",
+        "abstract",
+        "vibrant"
+      ],
+      "description": "AI-generated artwork with vibrant color scheme",
+      "image_url": "/generated/75d926ac.jpg",
+      "created_date": "2025-09-19",
+      "ai_generated": true
+    },
+    {
+      "id": "bfe757b7",
+      "title": "Soft Whispers",
+      "artist": "AI Gallery Generator",
+      "style": "abstract",
+      "color_palette": [
+        "#FF6B6B",
+        "#4ECDC4",
+        "#45B7D1"
+      ],
+      "tags": [
+        "ai_generated",
+        "abstract",
+        "pastel"
+      ],
+      "description": "AI-generated artwork with pastel color scheme",
+      "image_url": "/generated/bfe757b7.jpg",
+      "created_date": "2025-09-19",
+      "ai_generated": true
+    },
+    {
+      "id": "7092a41f",
+      "title": "Shadow Play",
+      "artist": "AI Gallery Generator",
+      "style": "abstract",
+      "color_palette": [
+        "#FF6B6B",
+        "#4ECDC4",
+        "#45B7D1"
+      ],
+      "tags": [
+        "ai_generated",
+        "abstract",
+        "monochrome"
+      ],
+      "description": "AI-generated artwork with monochrome color scheme",
+      "image_url": "/generated/7092a41f.jpg",
+      "created_date": "2025-09-19",
+      "ai_generated": true
+    }
+  ],
+  "users": {
+    "user001": {
+      "user_id": "user001",
+      "preferred_styles": [
+        "abstract",
+        "digital"
+      ],
+      "preferred_colors": [
+        "vibrant",
+        "cool"
+      ],
+      "liked_artworks": [
+        "art001",
+        "art002"
+      ],
+      "viewing_history": [
+        "art002"
+      ],
+      "interaction_weights": {
+        "style": 0.4,
+        "color": 0.3,
+        "tags": 0.3
+      }
+    }
+  }
+}
